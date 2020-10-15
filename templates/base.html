@@ -1,0 +1,94 @@
+{% extends "bootstrap/base.html" %}
+{% import "bootstrap/wtf.html" as wtf %}
+{% import "bootstrap/fixes.html" as fixes %}
+{% import "bootstrap/utils.html" as utils %}
+
+{% block title %}
+    {% if title %}Colorz: {{ title }}{% else %}"Colorz! Generate your colours!"{% endif %}
+{% endblock %}
+
+{% block head %}
+    {{super()}}
+    {{fixes.ie8()}}
+    <link rel="apple-touch-icon" sizes="180x180" href="{{ url_for('static', filename='apple-touch-icon.png') }}">
+    <link rel="icon" type="image/png" sizes="32x32" href="{{ url_for('static', filename='favicon-32x32.png') }}">
+    <link rel="icon" type="image/png" sizes="16x16" href="{{ url_for('static', filename='favicon-16x16.png') }}">
+    <link rel="manifest" href="{{ url_for('static', filename='site.webmanifest') }}">
+<style>
+    /* Sticky footer styles
+-------------------------------------------------- */
+    html {
+        position: relative;
+        min-height: 100%;
+    }
+    body {
+        margin-bottom: 60px; /* Margin bottom by footer height */
+    }
+    .footer {
+        position: absolute;
+        bottom: 0;
+        width: 100%;
+        height: 60px; /* Set the fixed height of the footer here */
+        line-height: 60px; /* Vertically center the text there */
+    }
+    .rainbow {
+        background-image: linear-gradient(to right, red,orange,yellow,green,blue,indigo,violet);
+    }
+
+    .form-inline > * {
+    margin:10px 10px 10px 20px;
+    }
+    {#.navbar {#}
+    {#      background-image: linear-gradient(to right, red,orange,yellow,green,blue,indigo,violet);#}
+    {#}#}
+</style>
+{% endblock %}
+
+{% block navbar %}
+    <nav class="rainbow  navbar navbar-inverse">
+        <div class="container">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <div  class="navbar-brand"><a href="{{ url_for('upload_file') }}"><p  style="height:50px;">Colorz Analysis<span class="label label-warning" style="position: fixed; top: 10px;">Beta</span></p>
+</a></div>
+            </div>
+{#            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">#}
+{#                <ul class="nav navbar-nav">#}
+{#                    <li><a href=""></a></li>#}
+{#                </ul>#}
+{#                <ul class="nav navbar-nav navbar-right">#}
+{#                    <li>/li>#}
+{#                </ul>#}
+{#            </div>#}
+        </div>
+    </nav>
+{% endblock %}
+{% block content %}
+    <div class="container" role="main">
+        {% with messages = get_flashed_messages(with_categories=true) %}
+            {% if messages %}
+                {% for category, message in messages %}
+                    <div class="alert alert-{{ category  }}" role="alert">{{ message }}</div>
+                {% endfor %}
+            {% endif %}
+        {% endwith %}
+        {% block app_content %}{% endblock %}
+    </div>
+    {{super()}}
+<!-- Footer -->
+    <footer class="footer">
+     <div class="rainbow navbar-inverse footer-copyright text-center py-3"><span style="color: black; ">© 2020 Copyright:
+         <a href="https://github.com/piotr-jarosz" style="color: black; ">Piotr Jarosz</a> under MIT license. Source code is available at:<a href="https://github.com/Icoqu/Colorz" style="color: black; ">https://github.com/Icoqu/SecretShare</a></span>
+     </div>
+    </footer>
+{% endblock content %}
+
+{% block scripts %}
+    {{ super() }}
+    <script src="https://www.google.com/recaptcha/api.js"></script>
+{% endblock %}
