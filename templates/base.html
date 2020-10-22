@@ -31,22 +31,52 @@
         height: 60px; /* Set the fixed height of the footer here */
         line-height: 60px; /* Vertically center the text there */
     }
-    .rainbow {
-        background-image: linear-gradient(to right, red,orange,yellow,green,blue,indigo,violet);
-    }
 
-    .form-inline > * {
-    margin:10px 10px 10px 20px;
+.wrapper {
+  position: inherit;
+    background: linear-gradient(124deg, #ff2400, #e81d1d, #e8b71d, #e3e81d, #1de840, #1ddde8, #2b1de8, #dd00f3, #dd00f3);
+    background-size: 1800% 1800%;
+
+    -webkit-animation: rainbow 18s ease infinite;
+    -z-animation: rainbow 18s ease infinite;
+    -o-animation: rainbow 18s ease infinite;
+      animation: rainbow 18s ease infinite;}
+
+    @-webkit-keyframes rainbow {
+        0%{background-position:0% 82%}
+        50%{background-position:100% 19%}
+        100%{background-position:0% 82%}
     }
-    {#.navbar {#}
-    {#      background-image: linear-gradient(to right, red,orange,yellow,green,blue,indigo,violet);#}
-    {#}#}
+    @-moz-keyframes rainbow {
+        0%{background-position:0% 82%}
+        50%{background-position:100% 19%}
+        100%{background-position:0% 82%}
+    }
+    @-o-keyframes rainbow {
+        0%{background-position:0% 82%}
+        50%{background-position:100% 19%}
+        100%{background-position:0% 82%}
+    }
+    @keyframes rainbow {
+        0%{background-position:0% 82%}
+        50%{background-position:100% 19%}
+        100%{background-position:0% 82%}
+}
+
+.form-inline > * {
+    margin:10px 10px 10px 20px;
+}
+
+no-decoration {
+    color: black; }
+    a {color: black; text-decoration: none;}
+    a:hover {text-decoration: none;}
 </style>
 {% endblock %}
 
 {% block navbar %}
-    <nav class="rainbow  navbar navbar-inverse">
-        <div class="container">
+    <nav class="wrapper navbar navbar-inverse">
+    <div class="container">
             <div class="navbar-header">
                 <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
                     <span class="sr-only">Toggle navigation</span>
@@ -54,19 +84,21 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <div  class="navbar-brand"><a href="{{ url_for('upload_file') }}"><p  style="height:50px;">Colorz Analysis<span class="label label-warning" style="position: fixed; top: 10px;">Beta</span></p>
-</a></div>
+                <div  class="navbar-brand"><a href="{{ url_for('upload_file') }}" class="no-decoration"><p style="height:50px;">Colorz Analysis<span class="label label-warning" style="position: fixed; top: 10px;">Beta</span></p>
+                </a></div>
             </div>
-{#            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">#}
-{#                <ul class="nav navbar-nav">#}
-{#                    <li><a href=""></a></li>#}
-{#                </ul>#}
-{#                <ul class="nav navbar-nav navbar-right">#}
-{#                    <li>/li>#}
-{#                </ul>#}
-{#            </div>#}
+            {#            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">#}
+            {#                <ul class="nav navbar-nav">#}
+            {#                    <li><a href=""></a></li>#}
+            {#                </ul>#}
+            {#                <ul class="nav navbar-nav navbar-right">#}
+            {#                    <li>/li>#}
+            {#                </ul>#}
+            {#            </div>#}
         </div>
+        <div class="container">
     </nav>
+
 {% endblock %}
 {% block content %}
     <div class="container" role="main">
@@ -82,9 +114,9 @@
     {{super()}}
 <!-- Footer -->
     <footer class="footer">
-     <div class="rainbow navbar-inverse footer-copyright text-center py-3"><span style="color: black; ">© 2020 Copyright:
-         <a href="https://github.com/piotr-jarosz" style="color: black; ">Piotr Jarosz</a> under MIT license. Source code is available at:<a href="https://github.com/Icoqu/Colorz" style="color: black; ">https://github.com/Icoqu/SecretShare</a></span>
-     </div>
+     <div class="navbar-inverse footer-copyright text-center py-3"><div class="wrapper"><span style="color: black; ">© 2020 Copyright:
+         <a href="https://github.com/piotr-jarosz" style="color: black; ">Piotr Jarosz</a> under MIT license. Source code is available at:<a href="https://github.com/Icoqu/Colorz" style="color: black; ">https://github.com/Icoqu/Colorz</a></span>
+     </div></div>
     </footer>
 {% endblock content %}
 
